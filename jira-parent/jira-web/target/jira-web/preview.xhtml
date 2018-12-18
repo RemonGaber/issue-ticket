@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Preview Ticket</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:growl id="messages"></p:growl>
+		
+		<p:inputNumber value="#{ticketFaces.selectedTicket.id}" type="hidden"/>
+		
+		<h3>Ticket Title</h3>
+    	<p:inputTextarea value="#{ticketFaces.selectedTicket.title}" rows="5" cols="30" counter="display_1"  maxlength="500" counterTemplate="{0} characters remaining." autoResize="false" />
+    	<br />
+    	<h:outputText id="display_1" />
+		
+		<h3>Ticket Details</h3>
+   	 	<p:inputTextarea value="#{ticketFaces.selectedTicket.details}" rows="5" cols="30" counter="display_2" maxlength="2000" counterTemplate="{0} characters remaining." autoResize="false" />
+   	 	<br />
+   	 	<h:outputText id="display_2" />
+   	 	<br />
+   	 	
+   	 	<h3>Ticket Status</h3>
+   	 	<h:selectOneMenu value="#{ticketFaces.selectedTicket.status}" >
+            <f:selectItems value="#{ticketFaces.status}" />
+        </h:selectOneMenu>
+        <br />
+        
+        <h3>Ticket Priority</h3>
+   	 	<h:selectOneMenu value="#{ticketFaces.selectedTicket.priority}" >
+            <f:selectItems value="#{ticketFaces.priority}" />
+        </h:selectOneMenu>
+        <br />
+        <br />
+   	 	
+   	 	<p:commandButton value="Update" action="#{ticketFaces.updateTicket}" update="messages"></p:commandButton>
+	</h:form>
+</h:body>
+</html>

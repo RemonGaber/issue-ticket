@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>login</title>
+</h:head>
+<h:body>
+	<h:form>
+		
+		<p:commandButton value="Add" action="#{ticketFaces.newTicketPage}"></p:commandButton>
+		
+		<h3>All Issues</h3>
+		
+		<p:dataTable var="ticket" value="#{ticketFaces.ticketDataModel}" rowKey="#{ticket.id}" rowIndexVar="rowIndex" id="ticketId" selection="#{ticketFaces.selectedTicket}" selectionMode="single">
+	        <p:column headerText="Ticket ID">
+	            <h:outputText value="#{ticket.id}" />
+	        </p:column>
+	        <p:column headerText="Title">
+	            <h:outputText value="#{ticket.title}" />
+	        </p:column>
+	        <p:column headerText="Priority">
+	            <h:outputText value="#{ticket.priority}" />
+	        </p:column>
+	        <p:column headerText="Status">
+	            <h:outputText value="#{ticket.status}" />
+	        </p:column>
+	    </p:dataTable>
+    
+    	<p:contextMenu for="ticketId" widgetVar="cMenu">
+			<p:menuitem value="View" update="ticketId" icon="ui-icon-close" action="#{ticketFaces.previewTicket}"/>
+			<p:menuitem value="Delete" update="ticketId" icon="ui-icon-close" action="#{ticketFaces.deleteTicket}"/>
+		</p:contextMenu>
+    
+   		<h:commandLink action="#{userFaces.logout}" value="Logout"></h:commandLink>
+	</h:form>
+</h:body>
+</html>
